@@ -1,0 +1,126 @@
+/* =========================================
+   1. VARIABLES DE COULEURS
+   ========================================= */
+:root {
+    --navy: #2B4561;       
+    --orange: #E3832B;     
+    --cream: #F5E6BE;      
+    --ice-blue: #E3F2FD;   
+    --dark-text: #1B2B3A;
+}
+
+/* =========================================
+   2. RÉGLAGES GÉNÉRAUX
+   ========================================= */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--dark-text);
+    line-height: 1.6;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+}
+
+/* =========================================
+   3. SECTION HERO
+   ========================================= */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), 
+                url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-logo {
+    width: auto;
+    max-width: 320px;
+    height: auto;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.6));
+}
+
+.text-bandeau {
+    background-color: rgba(43, 69, 97, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 4px solid var(--orange);
+    border-bottom: 4px solid var(--orange);
+}
+
+.badge-ouverture {
+    display: inline-block;
+    background-color: var(--orange);
+    color: white;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 1.6rem;
+    border: 2px solid var(--cream);
+    margin-top: 15px;
+}
+
+/* =========================================
+   4. TITRES ET CRÈMERIE
+   ========================================= */
+.section-title {
+    color: var(--navy);
+    position: relative;
+    padding-bottom: 15px;
+    font-weight: 700;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 4px;
+    background-color: var(--orange);
+}
+
+.ice-cream-section { background-color: var(--ice-blue); }
+
+.cremerie-logo {
+    max-width: 260px;
+    border-radius: 25px;
+    border: 5px solid white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.section-title-alt { color: var(--navy); font-weight: 700; }
+.color-navy { color: var(--navy); }
+
+/* =========================================
+   5. CARTE ET FOOTER
+   ========================================= */
+.map-container {
+    border: 8px solid var(--navy);
+    border-radius: 15px;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.border-orange {
+    border-color: var(--orange) !important;
+    width: 60px;
+    margin: 20px auto;
+    opacity: 1;
+}
+
+footer {
+    background-color: var(--navy);
+    border-top: 5px solid var(--orange);
+}
+
+@media (min-width: 992px) {
+    .border-orange { margin: 20px 0; }
+}

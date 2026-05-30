@@ -1,124 +1,155 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resto-Cantine OK | Sabrevois</title>
-
-    <meta name="description"
-        content="Découvrez le Resto-Cantine OK à Sabrevois. Un concept unique alliant restaurant et cantine au bord de l'eau. Ouverture prévue à l'été 2026 !">
-
-    <meta property="og:title" content="Resto-Cantine OK">
-    <meta property="og:description"
-        content="Le nouveau rendez-vous gourmand au bord du Richelieu. Suivez notre progression pour l'ouverture en 2026 !">
-    <meta property="og:image" content="https://resto-cantine-ok.ca/assets/Logo1.6AvecFond.svg">
-    <meta property="og:url" content="https://resto-cantine-ok.ca/">
-    <meta property="og:type" content="website">
-
-    <link rel="icon" type="image/png" href="assets/IMG_4285.png">
-
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;700&display=swap"
-        rel="stylesheet">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <header class="hero-section text-center text-white d-flex flex-column justify-content-center align-items-center">
-        <img src="assets/Logo1.6AvecFond.svg" alt="Logo Resto-Cantine OK" class="hero-logo mb-4">
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color: var(--cream) !important; border-bottom: 3px solid var(--orange); box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/Logo1.6AvecFond.svg" alt="Logo Resto-Cantine OK" style="height: 60px; width: auto; min-width: 60px; display: inline-block;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Nous joindre</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-        <div class="text-bandeau w-100 py-4">
-            <div class="container">
-                <h1 class="display-3 fw-bold">RESTO-CANTINE OK</h1>
-                <p class="lead mb-3">Le nouveau rendez-vous gourmand à Sabrevois.</p>
+    <header class="hero-section d-flex align-items-center position-relative overflow-hidden" style="min-height: 85vh;">
+        
+        <video autoplay loop muted playsinline class="position-absolute top-50 start-50 translate-middle w-100 h-100" style="object-fit: cover; z-index: 1;">
+            <source src="assets/videoWelcome.mp4" type="video/mp4">
+            Votre navigateur ne prend pas en charge les vidéos en arrière-plan.
+        </video>
 
-                <div class="mb-3">
-                    <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" class="btn btn-primary fw-bold"
-                        style="background-color: #1877F2; border: none; padding: 10px 20px;" target="_blank">
-                        Suivez-nous sur Facebook pour nos mises à jour !
-                    </a>
-                </div>
+        <div class="position-absolute top-0 start-0 w-100 h-100" style="background: rgba(43, 69, 97, 0.6); z-index: 2;"></div>
 
-                <div class="badge-ouverture">OUVERTURE ÉTÉ 2026</div>
+        <div class="container text-center text-white position-relative" style="z-index: 3;">
+            <h1 class="display-3 fw-bold mb-3" style="font-family: 'Oswald', sans-serif; text-transform: uppercase; text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">
+                Nous sommes ouverts !
+            </h1>
+            <p class="lead mb-4 fs-4" style="font-family: 'Montserrat', sans-serif; text-shadow: 1px 1px 5px rgba(0,0,0,0.7);">
+                Venez casser la croûte et savourer une bonne crème glacée au bord de l'eau.
+            </p>
+            
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                <a href="menu.html" class="btn btn-lg px-4 py-3" style="background-color: var(--orange); color: white; font-family: 'Oswald', sans-serif; text-transform: uppercase; border: 2px solid var(--cream); border-radius: 10px; font-size: 1.3rem; text-decoration: none;">
+                    Voir notre Menu 🍽️
+                </a>
+                <a href="#contact" class="btn btn-lg px-4 py-3" style="background-color: rgba(43, 69, 97, 0.85); color: var(--cream); font-family: 'Oswald', sans-serif; text-transform: uppercase; border: 2px solid var(--cream); border-radius: 10px; font-size: 1.3rem; text-decoration: none;">
+                    Nous trouver 📍
+                </a>
             </div>
         </div>
     </header>
 
-
-    <section class="py-5 bg-light">
-        <div class="container text-center">
-            <h2 class="section-title">Notre Concept</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-8">
-                    <p class="fs-5 mt-4">
-                        Situé au bord de l'eau à Sabrevois, le <strong>Resto-Cantine OK</strong> combine la qualité d'un
-                        restaurant et le confort d'une cantine. Que vous soyez en bateau, en auto ou en moto; on vous attend
-                        dans
-                        une ambiance unique! Nous offrirons également une sélection de cocktails rafraîchissants.
-                    </p>
+    <section class="py-5" style="background-color: var(--cream); color: var(--dark-text);">
+        <div class="container text-center py-3">
+            <h2 class="display-5 fw-bold mb-4" style="font-family: 'Oswald', sans-serif; color: var(--navy); text-transform: uppercase;">
+                Du grill à la crèmerie
+            </h2>
+            <p class="mx-auto mb-5" style="max-width: 700px; font-family: 'Montserrat', sans-serif; font-size: 1.1rem;">
+                Que ce soit pour un casseau de frites croustillantes après une sortie en bateau sur le Richelieu ou pour vous rafraîchir avec une de nos fameuses crèmes glacées, nous avons de tout pour plaire à toute la famille !
+            </p>
+            
+            <div class="row g-4 justify-content-center mb-5">
+                <div class="col-sm-6 col-md-5">
+                    <div class="p-4 border border-2 h-100 rounded-3 bg-white shadow-sm" style="border-color: var(--navy) !important;">
+                        <span class="fs-1">🍔</span>
+                        <h3 class="h4 fw-bold mt-2" style="font-family: 'Oswald', sans-serif; color: var(--navy);">Côté Cantine</h3>
+                        <p class="text-muted small">Burgers, poutines, hot-dogs savoureux et snacks classiques de marina.</p>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5 ice-cream-section border-top border-bottom">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-5 text-center mb-4 mb-md-0">
-                    <img src="assets/cremerie.png" alt="Logo Crèmerie OK" class="cremerie-logo shadow">
-                </div>
-                <div class="col-md-7 text-center text-md-start">
-                    <h2 class="section-title-alt mb-4">Espace Crèmerie</h2>
-                    <p class="fs-5 mb-4">
-                        Quoi de mieux qu'une pause rafraîchissante après une journée sur le Richelieu ? Venez découvrir
-                        nos délices glacés :
-                    </p>
-                    <ul class="list-unstyled fs-4 fw-bold color-navy">
-                        <li>🍦 Crème glacée molle</li>
-                        <li>🥤 Slush</li>
-                        <li>🌀 Et plusieurs autres surprises à venir !</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-5">
-        <div class="container text-center text-md-start">
-            <h2 class="text-center mb-5 section-title">Où nous trouver</h2>
-            <div class="row align-items-center">
-                <div class="col-lg-4 mb-4">
-                    <h4 class="color-navy">Notre Adresse</h4>
-                    <p class="fs-5">4 36e Avenue, Sabrevois, QC J0J 2G0</p>
-                    <hr class="border-orange opacity-100 mx-auto mx-md-0">
-                    <p class="text-muted">Nous sommes situés tout au fond sur le terrain de la marina</p>
-                </div>
-                <div class="col-lg-8">
-                    <div class="map-container shadow">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d1159.205739504494!2d-73.24923899814746!3d45.19795160436918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNDXCsDExJzUyLjYiTiA3M8KwMTQnNTcuMyJX!5e0!3m2!1sfr!2sca!4v1705096277000!5m2!1sfr!2sca"
-                            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" tabindex="-1">
-                        </iframe>
+                <div class="col-sm-6 col-md-5">
+                    <div class="p-4 border border-2 h-100 rounded-3 bg-white shadow-sm" style="border-color: var(--orange) !important;">
+                        <span class="fs-1">🍦</span>
+                        <h3 class="h4 fw-bold mt-2" style="font-family: 'Oswald', sans-serif; color: var(--orange);">Côté Crèmerie</h3>
+                        <p class="text-muted small">Sundaes, cornets sans lactose, trempages et rafraîchissements.</p>
                     </div>
                 </div>
             </div>
+
+            <a href="menu.html" class="btn px-5 py-3 shadow" style="background-color: var(--navy); color: white; font-family: 'Oswald', sans-serif; text-transform: uppercase; font-size: 1.2rem; border-radius: 30px; border: none; transition: 0.3s; text-decoration: none;">
+                Découvrir le Menu Complet
+            </a>
         </div>
     </section>
 
-    <footer class="text-white py-4">
-        <div class="container text-center">
-            <p class="mb-2">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
+    <section id="contact" class="py-5" style="background-color: white; color: var(--dark-text);">
+        <div class="container py-3">
+            <div class="row g-4 align-items-center">
+                
+                <div class="col-md-5 text-center text-md-start">
+                    <h2 class="display-5 fw-bold mb-3" style="font-family: 'Oswald', sans-serif; color: var(--navy); text-transform: uppercase;">
+                        Où nous trouver 📍
+                    </h2>
+                    <p class="lead mb-4" style="font-family: 'Montserrat', sans-serif;">
+                        Nous sommes situés directement à la marina de Sabrevoix, l'arrêt parfait après une sortie en bateau sur le Richelieu ou pour une virée sur la Rive-Sud !
+                    </p>
+                    
+                    <div class="mb-4" style="font-family: 'Montserrat', sans-serif;">
+                        <h4 class="fw-bold h5 mb-2" style="color: var(--orange); font-family: 'Oswald', sans-serif; text-transform: uppercase;">Adresse</h4>
+                        <p class="mb-0 fs-5 fw-bold">4B, 36e Avenue,<br>Sabrevois, QC, J0J 2G0</p>
+                        <small class="text-muted">(Au Marina)</small>
+                    </div>
+
+                    <a href="https://www.google.com/maps/dir/?api=1&destination=Resto-Cantine+OK+4+36e+Avenue+Sabrevois+QC+J0J+2G0" target="_blank" class="btn btn-lg px-4 py-3 shadow-sm w-100 w-md-auto" style="background-color: var(--orange); color: white; font-family: 'Oswald', sans-serif; text-transform: uppercase; border-radius: 10px; border: none; font-size: 1.2rem; transition: 0.3s; text-decoration: none;">
+                        Obtenir l'itinéraire 🚗💨
+                    </a>
+                </div>
+
+                <div class="col-md-7">
+                    <div class="ratio ratio-16x9 shadow rounded-3 overflow-hidden border border-2" style="border-color: var(--cream) !important;">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.440263695287!2d-73.23847952372863!3d45.4004380710731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc99733aeae8f75%3A0x5aa70a63d3e23160!2sResto-Cantine%20OK!5e0!3m2!1sfr!2sca!4v1717110000000!5m2!1sfr!2sca" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer text-center" style="background-color: var(--navy); border-top: 5px solid var(--orange);">
+        <div class="container text-white py-4">
+            <h2 class="mb-4" style="font-family: 'Oswald', sans-serif; text-transform: uppercase;">Resto-Cantine OK</h2>
+            <p><strong>Adresse :</strong> 4, 36e Avenue, Sabrevoix, QC (À la Marina Sabrevois)</p>
+            <p><strong>Suivez-nous :</strong> <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank" class="text-white text-decoration-none fw-bold">Facebook</a></p>
+            <p class="mt-4 mb-0 text-white-50 fs-7">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
             <p class="mb-0">
-                Fait par <a href="https://fortierwebdesign.ca/" class="text-white text-decoration-none fw-bold"
-                    target="_blank">Fortier Web Design</a>
+                Fait par <a href="https://fortierwebdesign.ca/" class="text-white text-decoration-none fw-bold" target="_blank">Fortier Web Design</a>
             </p>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>

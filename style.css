@@ -124,3 +124,10 @@ footer {
 @media (min-width: 992px) {
     .border-orange { margin: 20px 0; }
 }
+
+.navbar {
+    background-color: var(--cream) !important; /* Utilise ton beige de marque #F4EAD4 */
+    border-bottom: 3px solid var(--orange);    /* Ligne orange de rappel en dessous */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Légère ombre pour détacher de la page au défilement */
+    padding: 0.5rem 1rem;
+}

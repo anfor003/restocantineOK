@@ -1,126 +1,741 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
-    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="shortcut icon" href="/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-<link rel="manifest" href="/site.webmanifest" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notre Menu | Resto-Cantine OK</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notre Menu | Resto-Cantine OK</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta name="description" content="Consultez le menu en ligne du Resto-Cantine OK à Sabrevois.">
-    <meta name="robots" content="noindex, follow"> <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="style.css">
-    <style>
-        /* Styles spécifiques pour la page Menu QR */
-        .menu-bg {
-            background: linear-gradient(rgba(43, 69, 97, 0.9), rgba(43, 69, 97, 0.95)), url('assets/IMG_4424.JPG') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            color: white;
-        }
+    :root {
+      --sun:   #F4A31A;
+      --coral: #E85D3A;
+      --sky:   #2D7BBF;
+      --water: #0E4C7A;
+      --cream: #FDF6E8;
+      --sand:  #EDE0C4;
+      --dark:  #1A1208;
+      --white: #FFFFFF;
+      --r: Fraunces, Georgia, serif;
+      --s: 'DM Sans', sans-serif;
+    }
 
-        .menu-card {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            border: 4px solid var(--orange);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            color: var(--dark-text);
-        }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--s);
+      background: var(--cream);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
 
-        .btn-menu-download {
-            background-color: var(--orange);
-            color: white;
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.4rem;
-            text-transform: uppercase;
-            border: 2px solid var(--cream);
-            padding: 12px 30px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-        }
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(253,246,232,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 2px solid var(--sand);
+    }
+    .logo {
+      font-family: var(--r);
+      font-size: 1.4rem; font-weight: 900;
+      color: var(--coral); text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo span { color: var(--water); }
+    .back-btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--dark); text-decoration: none;
+      padding: 0.5rem 1.1rem;
+      border: 2px solid var(--sand);
+      border-radius: 100px;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { border-color: var(--coral); color: var(--coral); }
 
-        .btn-menu-download:hover {
-            background-color: #c96f20;
-            color: var(--cream);
-            transform: translateY(-2px);
-        }
+    /* ── HERO BANNER ── */
+    .menu-hero {
+      background: var(--water);
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(244,163,26,0.2) 0%, transparent 60%),
+                  radial-gradient(ellipse at 80% 30%, rgba(45,123,191,0.3) 0%, transparent 50%);
+    }
+    .menu-hero-inner { position: relative; z-index: 1; }
+    .menu-hero h1 {
+      font-family: var(--r);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+    .menu-hero h1 em { font-style: italic; color: var(--sun); }
+    .menu-hero p {
+      color: rgba(255,255,255,0.75);
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+    }
 
-        .pdf-container {
-            position: relative;
-            width: 100%;
-            height: 65vh;
-            border: 3px solid var(--navy);
-            border-radius: 10px;
-            overflow: hidden;
-        }
+    /* ── FILTER TABS ── */
+    .filter-tabs {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center;
+      padding: 0 1rem;
+      position: relative; z-index: 1;
+    }
+    .tab-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: rgba(255,255,255,0.12);
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--s);
+    }
+    .tab-btn:hover, .tab-btn.active {
+      background: var(--sun);
+      border-color: var(--sun);
+      color: var(--dark);
+    }
 
-        .back-home {
-            color: var(--cream);
-            text-decoration: none;
-            font-weight: bold;
-            transition: color 0.2s;
-        }
-        
-        .back-home:hover {
-            color: var(--orange);
-        }
-    </style>
+    /* ── WAVE ── */
+    .wave { overflow: hidden; line-height: 0; background: var(--cream); }
+    .wave svg { display: block; width: 100%; }
+
+    /* ── MENU GRID ── */
+    .menu-body {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem 5rem;
+    }
+
+    /* Section headings */
+    .menu-section {
+      margin-bottom: 3.5rem;
+      scroll-margin-top: 80px;
+    }
+    .section-header {
+      display: flex; align-items: center; gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .section-icon { font-size: 2rem; }
+    .section-header h2 {
+      font-family: var(--r);
+      font-size: 1.9rem; font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+    .section-header .section-line {
+      flex: 1; height: 2px;
+      background: linear-gradient(to right, var(--sand), transparent);
+      border-radius: 2px;
+    }
+
+    /* Items grid */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .items-grid.wide {
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    }
+
+    /* Item card */
+    .item-card {
+      background: var(--white);
+      border: 2px solid var(--sand);
+      border-radius: 18px;
+      padding: 1.2rem 1.4rem;
+      display: flex; flex-direction: column;
+      gap: 0.4rem;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+    .item-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      border-color: var(--coral);
+    }
+    .item-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      gap: 0.5rem;
+    }
+    .item-name {
+      font-weight: 700; font-size: 0.95rem;
+      line-height: 1.3;
+    }
+    .item-price {
+      font-family: var(--r);
+      font-weight: 900;
+      font-size: 1.1rem;
+      color: var(--coral);
+      white-space: nowrap;
+    }
+    .item-price.dual {
+      font-size: 0.9rem;
+      text-align: right;
+    }
+    .item-desc {
+      font-size: 0.82rem;
+      color: #7a6040;
+      line-height: 1.5;
+    }
+    .item-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.6rem;
+      border-radius: 100px;
+      width: fit-content;
+    }
+    .badge-spicy { background: #fde8e3; color: var(--coral); }
+    .badge-sea   { background: #e3f0fd; color: var(--sky); }
+    .badge-new   { background: #fef3d0; color: #b07a00; }
+
+    /* Price row for items with multiple sizes */
+    .price-row {
+      display: flex; gap: 1rem; margin-top: 0.2rem;
+    }
+    .price-cell { text-align: center; }
+    .price-cell .size-label {
+      font-size: 0.7rem; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .price-cell .size-price {
+      font-family: var(--r); font-weight: 900; font-size: 1rem; color: var(--coral);
+    }
+
+    /* Trios highlight */
+    .trios-banner {
+      background: var(--coral);
+      color: var(--white);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .trio-item h3 {
+      font-family: var(--r);
+      font-size: 1.4rem; font-weight: 900;
+    }
+    .trio-item p { font-size: 0.8rem; opacity: 0.85; margin-top: 0.2rem; }
+
+    /* Enfant section */
+    .enfant-box {
+      background: var(--sun);
+      border-radius: 20px;
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center; gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .enfant-price {
+      font-family: var(--r);
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--dark);
+      line-height: 1;
+    }
+    .enfant-price span { font-size: 1.5rem; }
+    .enfant-items { flex: 1; }
+    .enfant-items h3 {
+      font-family: var(--r); font-size: 1.2rem; font-weight: 900;
+      margin-bottom: 0.5rem;
+    }
+    .enfant-items ul {
+      list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .enfant-items ul li {
+      background: rgba(0,0,0,0.1);
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .enfant-note { font-size: 0.8rem; opacity: 0.75; margin-top: 0.5rem; }
+
+    /* Breuvages */
+    .breuvages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.8rem;
+    }
+    .breuvage-card {
+      background: var(--water);
+      color: var(--white);
+      border-radius: 14px;
+      padding: 1rem 1.2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .breuvage-name { font-weight: 600; font-size: 0.9rem; }
+    .breuvage-price {
+      font-family: var(--r); font-weight: 900; font-size: 1.1rem; color: var(--sun);
+    }
+    .biere-note {
+      margin-top: 0.8rem;
+      background: rgba(14,76,122,0.08);
+      border: 1.5px solid rgba(14,76,122,0.2);
+      border-radius: 12px;
+      padding: 0.8rem 1.2rem;
+      font-size: 0.85rem;
+      color: var(--water);
+      font-weight: 500;
+    }
+
+    /* Note mer */
+    .mer-note {
+      font-size: 0.78rem; color: #888;
+      margin-top: 0.5rem;
+      font-style: italic;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.65);
+      padding: 2.5rem;
+      text-align: center;
+    }
+    .footer-logo { font-family: var(--r); font-size: 1.5rem; font-weight: 900; color: var(--white); }
+    .footer-logo span { color: var(--coral); }
+    footer p { font-size: 0.85rem; margin-top: 0.4rem; }
+    footer a { color: var(--sun); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 0.8rem 1.2rem; }
+      .menu-hero { padding: 3rem 1.2rem 2rem; }
+      .trios-banner { grid-template-columns: 1fr; }
+      .items-grid, .items-grid.wide { grid-template-columns: 1fr; }
+      .breuvages-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
+<body>
 
-<body class="menu-bg d-flex flex-column justify-content-between">
+<!-- NAV -->
+<nav>
+  <a class="logo" href="index.html">Resto-Cantine <span>OK</span></a>
+  <a class="back-btn" href="index.html">← Retour</a>
+</nav>
 
-    <main class="container py-4 my-auto">
-        <div class="row justify-content-center">
-            <div class="col-md-10 col-lg-8 text-center">
-                
-                <a href="index.html">
-                    <img src="assets/Logo1.6AvecFond.svg" alt="Logo Resto-Cantine OK" class="mb-3 shadow-sm" style="max-width: 140px; border-radius: 50%; border: 3px solid var(--orange);">
-                </a>
+<!-- HERO -->
+<div class="menu-hero">
+  <div class="menu-hero-inner">
+    <h1>Notre <em>Menu</em></h1>
+    <p>Cantine · Crèmerie · Goûts de la mer · Et plus encore !</p>
 
-                <div class="menu-card p-4 p-sm-5 mb-4">
-                    <h1 class="display-5 fw-bold mb-2" style="color: var(--navy);">Notre Menu</h1>
-                    <p class="lead mb-4">Découvrez nos spécialités et nos rafraîchissements au bord de l'eau !</p>
-                    
-                    <div class="mb-4">
-                        <a href="assets/Cantine OKmenu.pdf" target="_blank" class="btn btn-menu-download w-100 py-3">
-                            Format PDF ↗
-                        </a>
-                        <small class="text-muted d-block mt-2">Cliquez pour ouvrir, zoomer ou télécharger le menu.</small>
-                    </div>
+    <div class="filter-tabs">
+      <a class="tab-btn active" href="#smash">🍔 Smash Burger</a>
+      <a class="tab-btn" href="#poutines">🍟 Poutines</a>
+      <a class="tab-btn" href="#hotdog">🌭 Hot-Dog</a>
+      <a class="tab-btn" href="#bigdog">🌭 Big Dog</a>
+      <a class="tab-btn" href="#mer">🦞 Goûts de la mer</a>
+      <a class="tab-btn" href="#pizza">🍕 Pizza</a>
+      <a class="tab-btn" href="#club">🥪 Club</a>
+      <a class="tab-btn" href="#cotes">🍟 À Côtés</a>
+      <a class="tab-btn" href="#breuvages">🥤 Breuvages</a>
+      <a class="tab-btn" href="#enfant">🧒 Enfant</a>
+    </div>
+  </div>
+</div>
 
-                    <div class="pdf-container d-none d-sm-block">
-                        <iframe src="assets/Cantine OKmenu.pdf" width="100%" height="100%" style="border: none;">
-                            <p>Votre navigateur ne prend pas en charge l'affichage des PDF. <a href="assets/Cantine OKmenu.pdf">Cliquez ici pour le télécharger.</a></p>
-                        </iframe>
-                    </div>
-                </div>
+<div class="wave">
+  <svg viewBox="0 0 1440 50" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 1080,80 1440,50 L1440,0 L0,0 Z" fill="#0E4C7A"/>
+  </svg>
+</div>
 
-                <p class="mb-0">
-                    <a href="index.html" class="back-home">← Retour au site web</a>
-                </p>
+<div class="menu-body">
 
-            </div>
+  <!-- TRIOS -->
+  <div class="trios-banner">
+    <div class="trio-item"><h3>+$5,75</h3><p>Trio Frites</p></div>
+    <div class="trio-item"><h3>+$7,50</h3><p>Trio Rondelles d'oignon</p></div>
+    <div class="trio-item"><h3>+$9,25</h3><p>Trio Poutine</p></div>
+  </div>
+
+  <!-- SMASH BURGER -->
+  <div class="menu-section" id="smash">
+    <div class="section-header">
+      <span class="section-icon">🍔</span>
+      <h2>Smash Burger</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid wide">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Hamburger</span><span class="item-price">4,25$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Cheeseburger</span><span class="item-price">4,50$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Classique Deluxe</span>
+          <span class="item-price dual">Simple 6,75$<br/>Double 9,50$</span>
         </div>
-    </main>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Smash Mouth</span><span class="item-price">13,50$</span></div>
+        <span class="item-desc">Piment fort jalapeño, sauce buffalo, salade, tomate, cornichons épicés, fromage, sauce OK</span>
+        <span class="item-badge badge-spicy">Épicé</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Texas</span><span class="item-price">13,50$</span></div>
+        <span class="item-desc">Sauce BBQ, bacon, oignons caramélisés, salade, tomate, fromage, sauce OK</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Sauce au Poivre</span><span class="item-price">13,50$</span></div>
+        <span class="item-desc">Champignons, oignons caramélisés, sauce au poivre, salade, fromage, sauce OK</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Smoked Meat</span><span class="item-price">14,50$</span></div>
+        <span class="item-desc">Viande fumée, moutarde Dijon, salade, cornichon, fromage, sauce OK</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Le 'Don'</span><span class="item-price">16,50$</span></div>
+        <span class="item-desc">Champignons sautés, fromage brie, bacon, salade, cornichons, tomate, sauce OK</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">'Surf and Turf'</span><span class="item-price">16,50$</span></div>
+        <span class="item-desc">Mélange de la mer*, salade, tomate, fromage, sauce OK, sauce chili doux</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+    </div>
+  </div>
 
-    <footer class="text-center py-3" style="background-color: rgba(43, 69, 97, 0.4); border-top: none;">
-        <div class="container text-white-50 fs-7">
-            <p class="mb-0">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
-            <p class="mb-0">
-                Fait par <a href="https://fortierwebdesign.ca/" class="text-white text-decoration-none fw-bold"
-                    target="_blank">Fortier Web Design</a>
-            </p>
+  <!-- POUTINES -->
+  <div class="menu-section" id="poutines">
+    <div class="section-header">
+      <span class="section-icon">🍟</span>
+      <h2>Poutines</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid wide">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Poutine Classique</span></div>
+        <div class="price-row">
+          <div class="price-cell"><p class="size-label">Régulière</p><p class="size-price">11,99$</p></div>
+          <div class="price-cell"><p class="size-label">Grande</p><p class="size-price">15,99$</p></div>
         </div>
-    </footer>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Poutine au Poulet</span></div>
+        <div class="price-row">
+          <div class="price-cell"><p class="size-label">Régulière</p><p class="size-price">13,50$</p></div>
+          <div class="price-cell"><p class="size-label">Grande</p><p class="size-price">17,99$</p></div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Tacos</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Bœuf haché, salsa, fromage râpé, piment fort, sauce brune</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Shish Taouk</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Poulet, sauce à l'ail, sauce brune, origan séché</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Dalton</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Bœuf haché, oignons, piments doux, sauce brune</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Saucisse Churizo</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Saucisse churizo, sauce brune</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Smoked Meat</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Viande fumée, cornichons</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Spécial OK</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Salade chou, bœuf haché, oignons, sauce brune</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top">
+          <span class="item-name">Chou-Chou au Poulet</span>
+          <span class="item-price dual">Rég. 16,50$<br/>Grande 22,50$</span>
+        </div>
+        <span class="item-desc">Salade chou, poulet, sauce brune</span>
+      </div>
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- HOT DOG -->
+  <div class="menu-section" id="hotdog">
+    <div class="section-header">
+      <span class="section-icon">🌭</span>
+      <h2>Hot-Dog</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Steamé</span><span class="item-price">2,25$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Sauce à la Viande</span><span class="item-price">3,25$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Big Dog Régulier</span><span class="item-price">5,50$</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BIG DOG -->
+  <div class="menu-section" id="bigdog">
+    <div class="section-header">
+      <span class="section-icon">🌭</span>
+      <h2>Big Dog</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Tacos</span><span class="item-price">8,50$</span></div>
+        <span class="item-desc">Laitue, viande, piment doux, salsa, fromage râpé, rondelles piments forts</span>
+        <span class="item-badge badge-spicy">Épicé</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Pizza</span><span class="item-price">8,50$</span></div>
+        <span class="item-desc">Sauce viande, pepperoni, piment doux, fromage râpé</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Cheetos</span><span class="item-price">8,50$</span></div>
+        <span class="item-desc">Cornichon épicé, fromage fondu, Cheetos Flamin' Hot</span>
+        <span class="item-badge badge-spicy">Épicé</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Philly Cheese</span><span class="item-price">8,50$</span></div>
+        <span class="item-desc">Bœuf haché, fromage, piment doux, oignons</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOÛTS DE LA MER -->
+  <div class="menu-section" id="mer">
+    <div class="section-header">
+      <span class="section-icon">🦞</span>
+      <h2>Goûts de la Mer</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid wide">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Guédille Mélange de la Mer*</span><span class="item-price">18,99$</span></div>
+        <span class="item-desc">Servi avec frites et salade</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Poutine aux Crevettes</span><span class="item-price">20,99$</span></div>
+        <span class="item-desc">Crevettes, sauce blanche, fromage en grains</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Poutine Mélange de la Mer*</span><span class="item-price">25,99$</span></div>
+        <span class="item-desc">Homard, crevettes, goberge</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Brochettes Crevettes</span><span class="item-price">14,95$</span></div>
+        <span class="item-desc">Épicées ou à l'ail, servi avec frites et salade</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Fish & Chips</span><span class="item-price">14,95$</span></div>
+        <span class="item-desc">Servi avec frites et salade</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Galette de Morue</span><span class="item-price">17,95$</span></div>
+        <span class="item-desc">Servi avec frites et salade</span>
+      </div>
+    </div>
+    <p class="mer-note">* Mélange de la mer : Homard, crevettes, goberge</p>
+  </div>
+
+  <!-- PIZZA -->
+  <div class="menu-section" id="pizza">
+    <div class="section-header">
+      <span class="section-icon">🍕</span>
+      <h2>Pizza <small style="font-size:1rem;font-weight:400;font-family:var(--s);color:#888">sur pain naan</small></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Fromage</span><span class="item-price">7,99$</span></div>
+        <span class="item-desc">Sauce tomate, fromage mozzarella</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Pepperoni Fromage</span><span class="item-price">9,99$</span></div>
+        <span class="item-desc">Sauce tomate, fromage mozzarella, pepperoni</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">All Dressed</span><span class="item-price">11,99$</span></div>
+        <span class="item-desc">Sauce tomate, fromage mozzarella, pepperoni, piment, champignon</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Carnivore</span><span class="item-price">14,99$</span></div>
+        <span class="item-desc">Sauce tomate, fromage mozzarella, pepperoni, bœuf haché, bacon</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Poulet & Pesto</span><span class="item-price">14,99$</span></div>
+        <span class="item-desc">Sauce pesto, fromage mozzarella, poulet grillé, oignons</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Crevettes</span><span class="item-price">15,50$</span></div>
+        <span class="item-desc">Sauce rosée, fromage mozzarella, crevettes</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Mélange de la Mer</span><span class="item-price">16,50$</span></div>
+        <span class="item-desc">Sauce rosée, fromage mozzarella, mélange de la mer (homard, crevettes, goberge)</span>
+        <span class="item-badge badge-sea">Fruits de mer</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLUB SANDWICH -->
+  <div class="menu-section" id="club">
+    <div class="section-header">
+      <span class="section-icon">🥪</span>
+      <h2>Club Sandwich</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Servi avec Frites</span><span class="item-price">15,50$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Servi avec Poutine</span><span class="item-price">18,50$</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- À CÔTÉS -->
+  <div class="menu-section" id="cotes">
+    <div class="section-header">
+      <span class="section-icon">🍟</span>
+      <h2>À Côtés</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="items-grid">
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Frites</span></div>
+        <div class="price-row">
+          <div class="price-cell"><p class="size-label">Petite</p><p class="size-price">3,50$</p></div>
+          <div class="price-cell"><p class="size-label">Régulière</p><p class="size-price">8,50$</p></div>
+          <div class="price-cell"><p class="size-label">Familiale</p><p class="size-price">11,99$</p></div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Pogo</span><span class="item-price">2,99$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Languettes de Poulet (3)</span><span class="item-price">4,99$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Rondelles d'Oignon</span><span class="item-price">5,99$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Nachos Deluxe</span><span class="item-price">15,99$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Mac & Cheese Bacon</span><span class="item-price">5,99$</span></div>
+      </div>
+      <div class="item-card">
+        <div class="item-top"><span class="item-name">Cornichons Frits</span><span class="item-price">6,99$</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BREUVAGES -->
+  <div class="menu-section" id="breuvages">
+    <div class="section-header">
+      <span class="section-icon">🥤</span>
+      <h2>Breuvages</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="breuvages-grid">
+      <div class="breuvage-card"><span class="breuvage-name">Boisson gazeuse / Jus</span><span class="breuvage-price">2,99$</span></div>
+      <div class="breuvage-card"><span class="breuvage-name">Jus en boîte</span><span class="breuvage-price">1,99$</span></div>
+      <div class="breuvage-card"><span class="breuvage-name">Bouteille d'eau</span><span class="breuvage-price">2,99$</span></div>
+      <div class="breuvage-card"><span class="breuvage-name">Café</span><span class="breuvage-price">1,99$</span></div>
+    </div>
+    <p class="biere-note">🍺 Bières, spiritueux et cocktails aussi disponibles !</p>
+  </div>
+
+  <!-- ENFANT -->
+  <div class="menu-section" id="enfant">
+    <div class="section-header">
+      <span class="section-icon">🧒</span>
+      <h2>Menu Enfant <small style="font-size:0.9rem;font-weight:400;font-family:var(--s);color:#888">12 ans et moins</small></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="enfant-box">
+      <div class="enfant-price">6<span>$</span></div>
+      <div class="enfant-items">
+        <h3>Choisissez parmi :</h3>
+        <ul>
+          <li>Bébé Poutine <em style="font-size:0.75rem;opacity:0.7">(avec jus)</em></li>
+          <li>Pogo</li>
+          <li>Languettes de poulet panées (2)</li>
+          <li>Hot-Dog</li>
+          <li>Hamburger <em style="font-size:0.75rem;opacity:0.7">(avec jus et frite)</em></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end menu-body -->
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-logo">Resto-Cantine <span>OK</span></p>
+  <p>4B, 36e Avenue · Sabrevois, QC · À la Marina</p>
+  <p style="margin-top:1rem">
+    <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">Facebook</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.instagram.com/restocantineok" target="_blank">@restocantineok</a>
+  </p>
+  <p style="margin-top:1.5rem;opacity:0.35;font-size:0.8rem">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
+  <p>Fait par <a href="https://fortierwebdesign.ca">Fortier Web Design</a></p>
+</footer>
+
+
+
 </body>
-
 </html>

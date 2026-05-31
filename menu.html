@@ -36,28 +36,30 @@
     nav {
       position: sticky; top: 0; z-index: 100;
       display: flex; align-items: center; justify-content: space-between;
-      padding: 1rem 2.5rem;
-      background: rgba(253,246,232,0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 2px solid var(--sand);
+      padding: 0.6rem 2.5rem;
+      background: #F0E2C8;
+      border-bottom: 2px solid #D9C9A8;
     }
-    .logo {
-      font-family: var(--r);
-      font-size: 1.4rem; font-weight: 900;
-      color: var(--coral); text-decoration: none;
-      letter-spacing: -0.02em;
+    .logo { text-decoration: none; display: flex; align-items: center; }
+    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
+    nav ul a {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--dark);
+      transition: color 0.2s;
     }
-    .logo span { color: var(--water); }
-    .back-btn {
-      display: inline-flex; align-items: center; gap: 0.4rem;
-      font-size: 0.9rem; font-weight: 600;
-      color: var(--dark); text-decoration: none;
-      padding: 0.5rem 1.1rem;
-      border: 2px solid var(--sand);
+    nav ul a:hover { color: var(--coral); }
+    .nav-cta {
+      background: var(--coral);
+      color: var(--white) !important;
+      padding: 0.5rem 1.2rem;
       border-radius: 100px;
-      transition: all 0.2s;
+      transition: background 0.2s !important;
     }
-    .back-btn:hover { border-color: var(--coral); color: var(--coral); }
+    .nav-cta:hover { background: var(--water) !important; color: var(--white) !important; }
 
     /* ── HERO BANNER ── */
     .menu-hero {
@@ -322,8 +324,9 @@
     footer a:hover { text-decoration: underline; }
 
     /* ── RESPONSIVE ── */
-    @media (max-width: 600px) {
-      nav { padding: 0.8rem 1.2rem; }
+    @media (max-width: 700px) {
+      nav { padding: 0.5rem 1.2rem; }
+      nav ul { display: none; }
       .menu-hero { padding: 3rem 1.2rem 2rem; }
       .trios-banner { grid-template-columns: 1fr; }
       .items-grid, .items-grid.wide { grid-template-columns: 1fr; }
@@ -335,8 +338,14 @@
 
 <!-- NAV -->
 <nav>
-  <a class="logo" href="index.html">Resto-Cantine <span>OK</span></a>
-  <a class="back-btn" href="index.html">← Retour</a>
+  <a class="logo" href="index.html">
+    <img src="assets/Logo1.6AvecFond.svg" alt="Resto-Cantine OK" style="height:48px;width:auto;display:block;" />
+  </a>
+  <ul>
+    <li><a href="index.html#grill">Accueil</a></li>
+    <li><a href="index.html#contact">Nous trouver</a></li>
+    <li><a class="nav-cta" href="index.html">← Retour au site</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
@@ -349,11 +358,11 @@
       <a class="tab-btn active" href="#smash">🍔 Smash Burger</a>
       <a class="tab-btn" href="#poutines">🍟 Poutines</a>
       <a class="tab-btn" href="#hotdog">🌭 Hot-Dog</a>
-      <a class="tab-btn" href="#bigdog">🌭 Big Dog</a>
+      <a class="tab-btn" href="#bigdog">🌶️ Big Dog</a>
       <a class="tab-btn" href="#mer">🦞 Goûts de la mer</a>
       <a class="tab-btn" href="#pizza">🍕 Pizza</a>
       <a class="tab-btn" href="#club">🥪 Club</a>
-      <a class="tab-btn" href="#cotes">🍟 À Côtés</a>
+      <a class="tab-btn" href="#cotes">🧅 À Côtés</a>
       <a class="tab-btn" href="#breuvages">🥤 Breuvages</a>
       <a class="tab-btn" href="#enfant">🧒 Enfant</a>
     </div>
@@ -396,7 +405,7 @@
         </div>
       </div>
       <div class="item-card">
-        <div class="item-top"><span class="item-name">Smash Mouth</span><span class="item-price">13,50$</span></div>
+        <div class="item-top"><span class="item-name">Smash Mouth 🌶️</span><span class="item-price">13,50$</span></div>
         <span class="item-desc">Piment fort jalapeño, sauce buffalo, salade, tomate, cornichons épicés, fromage, sauce OK</span>
         <span class="item-badge badge-spicy">Épicé</span>
       </div>
@@ -521,7 +530,7 @@
   <!-- BIG DOG -->
   <div class="menu-section" id="bigdog">
     <div class="section-header">
-      <span class="section-icon">🌭</span>
+      <span class="section-icon">🌶️</span>
       <h2>Big Dog</h2>
       <div class="section-line"></div>
     </div>
@@ -536,7 +545,7 @@
         <span class="item-desc">Sauce viande, pepperoni, piment doux, fromage râpé</span>
       </div>
       <div class="item-card">
-        <div class="item-top"><span class="item-name">Cheetos</span><span class="item-price">8,50$</span></div>
+        <div class="item-top"><span class="item-name">Cheetos 🌶️</span><span class="item-price">8,50$</span></div>
         <span class="item-desc">Cornichon épicé, fromage fondu, Cheetos Flamin' Hot</span>
         <span class="item-badge badge-spicy">Épicé</span>
       </div>
@@ -648,7 +657,7 @@
   <!-- À CÔTÉS -->
   <div class="menu-section" id="cotes">
     <div class="section-header">
-      <span class="section-icon">🍟</span>
+      <span class="section-icon">🧅</span>
       <h2>À Côtés</h2>
       <div class="section-line"></div>
     </div>
@@ -699,7 +708,6 @@
   </div>
 
   <!-- ENFANT -->
-  <!-- ENFANT -->
   <div class="menu-section" id="enfant">
     <div class="section-header">
       <span class="section-icon">🧒</span>
@@ -733,7 +741,6 @@
     <a href="https://www.instagram.com/restocantineok" target="_blank">@restocantineok</a>
   </p>
   <p style="margin-top:1.5rem;opacity:0.35;font-size:0.8rem">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
-  <p>Fait par <a href="https://fortierwebdesign.ca">Fortier Web Design</a></p>
 </footer>
 
 

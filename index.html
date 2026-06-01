@@ -1,626 +1,942 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Resto-Cantine OK — Sabrevois, Richelieu</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resto-Cantine OK — Sabrevois, Richelieu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,400&family=DM+Sans:wght@300;400;500&display=swap"
+        rel="stylesheet" />
 
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    :root {
-      --sun:    #F4A31A;
-      --coral:  #E85D3A;
-      --sky:    #2D7BBF;
-      --water:  #0E4C7A;
-      --cream:  #FDF6E8;
-      --sand:   #EDE0C4;
-      --dark:   #1A1208;
-      --white:  #FFFFFF;
-      --r: Fraunces, Georgia, serif;
-      --s: 'DM Sans', sans-serif;
-    }
+        :root {
+            --sun: #F4A31A;
+            --coral: #E85D3A;
+            --sky: #2D7BBF;
+            --water: #0E4C7A;
+            --cream: #FDF6E8;
+            --sand: #EDE0C4;
+            --dark: #1A1208;
+            --white: #FFFFFF;
+            --r: Fraunces, Georgia, serif;
+            --s: 'DM Sans', sans-serif;
+        }
 
-    html { scroll-behavior: smooth; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-    body {
-      font-family: var(--s);
-      background: var(--cream);
-      color: var(--dark);
-      overflow-x: hidden;
-    }
+        body {
+            font-family: var(--s);
+            background: var(--cream);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0.6rem 2.5rem;
-      background: #F0E2C8;
-      border-bottom: 2px solid #D9C9A8;
-    }
-    .logo { text-decoration: none; display: flex; align-items: center; }
-    nav ul { list-style: none; display: flex; gap: 2rem; align-items: center; }
-    nav ul a {
-      text-decoration: none;
-      font-weight: 500;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--dark);
-      transition: color 0.2s;
-    }
-    nav ul a:hover { color: var(--coral); }
-    .nav-cta {
-      background: var(--coral);
-      color: var(--white) !important;
-      padding: 0.5rem 1.2rem;
-      border-radius: 100px;
-      transition: background 0.2s !important;
-    }
-    .nav-cta:hover { background: var(--water) !important; color: var(--white) !important; }
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 2.5rem;
+            background: #F0E2C8;
+            border-bottom: 2px solid #D9C9A8;
+        }
 
-    /* ── HERO ── */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
+        .logo {
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
 
-    /* Video background */
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center;
-      z-index: 0;
-    }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
 
-    /* Dark gradient overlay for readability */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(to bottom,
-          rgba(10,30,50,0.55) 0%,
-          rgba(10,30,50,0.35) 50%,
-          rgba(10,30,50,0.75) 100%);
-    }
+        nav ul a {
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--dark);
+            transition: color 0.2s;
+        }
 
-    /* Content centred over video */
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 8rem 2rem 5rem;
-      max-width: 800px;
-    }
+        nav ul a:hover {
+            color: var(--coral);
+        }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--sun);
-      color: var(--dark);
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.4rem 1.1rem;
-      border-radius: 100px;
-      margin-bottom: 1.8rem;
-      width: fit-content;
-      margin-left: auto; margin-right: auto;
-      animation: fadeUp 0.6s ease both;
-    }
+        .nav-cta {
+            background: var(--coral);
+            color: var(--white) !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 100px;
+            transition: background 0.2s !important;
+        }
 
-    .hero h1 {
-      font-family: var(--r);
-      font-size: clamp(3.2rem, 7vw, 6rem);
-      font-weight: 900;
-      line-height: 1.0;
-      letter-spacing: -0.03em;
-      color: var(--white);
-      text-shadow: 0 2px 30px rgba(0,0,0,0.4);
-      animation: fadeUp 0.6s 0.1s ease both;
-    }
-    .hero h1 em {
-      font-style: italic;
-      color: var(--sun);
-    }
+        .nav-cta:hover {
+            background: var(--water) !important;
+            color: var(--white) !important;
+        }
 
-    .hero-sub {
-      margin: 1.5rem auto 0;
-      font-size: 1.15rem;
-      line-height: 1.7;
-      color: rgba(255,255,255,0.88);
-      max-width: 500px;
-      text-shadow: 0 1px 10px rgba(0,0,0,0.5);
-      animation: fadeUp 0.6s 0.2s ease both;
-    }
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-    .hero-btns {
-      margin-top: 2.5rem;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      animation: fadeUp 0.6s 0.3s ease both;
-    }
+        /* Video background */
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            z-index: 0;
+        }
 
-    .btn-primary {
-      background: var(--coral);
-      color: var(--white);
-      padding: 0.9rem 2.2rem;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      transition: all 0.2s;
-      box-shadow: 0 4px 20px rgba(232,93,58,0.4);
-    }
-    .btn-primary:hover {
-      background: var(--sun);
-      color: var(--dark);
-      box-shadow: 0 4px 24px rgba(244,163,26,0.5);
-      transform: translateY(-2px);
-    }
-    .btn-secondary {
-      background: rgba(255,255,255,0.15);
-      color: var(--white);
-      padding: 0.9rem 2.2rem;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 1rem;
-      text-decoration: none;
-      border: 2px solid rgba(255,255,255,0.6);
-      backdrop-filter: blur(8px);
-      transition: all 0.2s;
-    }
-    .btn-secondary:hover {
-      background: rgba(255,255,255,0.3);
-      transform: translateY(-2px);
-    }
+        /* Dark gradient overlay for readability */
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(to bottom,
+                    rgba(10, 30, 50, 0.55) 0%,
+                    rgba(10, 30, 50, 0.35) 50%,
+                    rgba(10, 30, 50, 0.75) 100%);
+        }
 
-    /* Hours strip floating at bottom of hero */
-    .hero-hours {
-      margin-top: 3rem;
-      padding: 1.2rem 1.8rem;
-      background: rgba(14,76,122,0.75);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.2);
-      border-radius: 20px;
-      color: var(--white);
-      animation: fadeUp 0.6s 0.4s ease both;
-      display: inline-block;
-    }
-    .hours-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      opacity: 0.7;
-      margin-bottom: 0.8rem;
-    }
-    .hours-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0.5rem;
-      text-align: center;
-    }
-    .hour-col .day {
-      font-size: 0.65rem;
-      opacity: 0.65;
-      margin-bottom: 0.2rem;
-      text-transform: uppercase;
-    }
-    .hour-col .time {
-      font-size: 0.8rem;
-      font-weight: 600;
-    }
-    .hour-col.closed .time { opacity: 0.3; font-weight: 400; }
-    .hour-col.open .day { color: var(--sun); }
+        /* Content centred over video */
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 8rem 2rem 5rem;
+            max-width: 800px;
+        }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--sun);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.4rem 1.1rem;
+            border-radius: 100px;
+            margin-bottom: 1.8rem;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeUp 0.6s ease both;
+        }
 
-    /* ── WAVE DIVIDER ── */
-    .wave-divider {
-      width: 100%; overflow: hidden; line-height: 0; margin-top: -2px;
-    }
-    .wave-divider svg { display: block; width: 100%; }
+        .hero h1 {
+            font-family: var(--r);
+            font-size: clamp(3.2rem, 7vw, 6rem);
+            font-weight: 900;
+            line-height: 1.0;
+            letter-spacing: -0.03em;
+            color: var(--white);
+            text-shadow: 0 2px 30px rgba(0, 0, 0, 0.4);
+            animation: fadeUp 0.6s 0.1s ease both;
+        }
 
-    /* ── SECTION: Du grill à la crèmerie ── */
-    .section { padding: 6rem 2rem; }
-    .section-inner { max-width: 1100px; margin: 0 auto; }
-    .section-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--coral);
-      font-weight: 600;
-      margin-bottom: 0.8rem;
-    }
-    .section-title {
-      font-family: var(--r);
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
-      font-weight: 900;
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-    .section-desc {
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: #5a4a2a;
-      max-width: 540px;
-      margin-bottom: 3.5rem;
-    }
+        .hero h1 em {
+            font-style: italic;
+            color: var(--sun);
+        }
 
-    /* Cards */
-    .cards {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .card {
-      padding: 2.5rem;
-      border-radius: 24px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
-    .card-cantine {
-      background: var(--coral);
-      color: var(--white);
-    }
-    .card-cremerie {
-      background: var(--sky);
-      color: var(--white);
-    }
-    .card-emoji { font-size: 4rem; margin-bottom: 1.2rem; display: block; }
-    .card h3 {
-      font-family: var(--r);
-      font-size: 1.8rem;
-      font-weight: 900;
-      margin-bottom: 0.8rem;
-      letter-spacing: -0.02em;
-    }
-    .card p { font-size: 0.95rem; line-height: 1.65; opacity: 0.9; }
-    .card-corner {
-      position: absolute;
-      bottom: -20px; right: -20px;
-      font-size: 8rem;
-      opacity: 0.15;
-      pointer-events: none;
-    }
+        .hero-sub {
+            margin: 1.5rem auto 0;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.88);
+            max-width: 500px;
+            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+            animation: fadeUp 0.6s 0.2s ease both;
+        }
 
-    /* ── SECTION: Menu Preview ── */
-    .menu-section {
-      background: var(--water);
-      color: var(--white);
-      padding: 6rem 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .menu-section::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: radial-gradient(ellipse at 80% 50%, rgba(244,163,26,0.15) 0%, transparent 60%);
-    }
-    .menu-section .section-inner { position: relative; z-index: 1; }
-    .menu-section .section-label { color: var(--sun); }
-    .menu-section .section-title { color: var(--white); }
-    .menu-section .section-desc { color: rgba(255,255,255,0.75); }
+        .hero-btns {
+            margin-top: 2.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 0.6s 0.3s ease both;
+        }
 
-    .menu-cta-box {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      background: rgba(255,255,255,0.08);
-      border: 1.5px solid rgba(255,255,255,0.2);
-      border-radius: 24px;
-      padding: 2.5rem 3rem;
-      max-width: 600px;
-      backdrop-filter: blur(10px);
-    }
-    .menu-cta-icon { font-size: 4rem; }
-    .menu-cta-box h3 {
-      font-family: var(--r);
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 0.5rem;
-    }
-    .menu-cta-box p { opacity: 0.75; font-size: 0.95rem; margin-bottom: 1.2rem; }
-    .btn-gold {
-      background: var(--sun);
-      color: var(--dark);
-      padding: 0.75rem 1.8rem;
-      border-radius: 100px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.2s;
-      box-shadow: 0 4px 20px rgba(244,163,26,0.4);
-    }
-    .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(244,163,26,0.5); }
+        .btn-primary {
+            background: var(--coral);
+            color: var(--white);
+            padding: 0.9rem 2.2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            box-shadow: 0 4px 20px rgba(232, 93, 58, 0.4);
+        }
 
-    /* ── SECTION: Contact / Map ── */
-    .contact-section { padding: 6rem 2rem; }
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr;
-      gap: 4rem;
-      align-items: start;
-    }
-    .contact-info h2 {
-      font-family: var(--r);
-      font-size: 2.5rem;
-      font-weight: 900;
-      letter-spacing: -0.02em;
-      margin-bottom: 2rem;
-    }
-    .info-block { margin-bottom: 2rem; }
-    .info-block h4 {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--coral);
-      font-weight: 700;
-      margin-bottom: 0.7rem;
-    }
-    .info-block p, .info-block a {
-      font-size: 1rem;
-      line-height: 1.7;
-      color: var(--dark);
-      text-decoration: none;
-    }
-    .info-block a:hover { color: var(--coral); }
+        .btn-primary:hover {
+            background: var(--sun);
+            color: var(--dark);
+            box-shadow: 0 4px 24px rgba(244, 163, 26, 0.5);
+            transform: translateY(-2px);
+        }
 
-    .hours-table { width: 100%; border-collapse: collapse; }
-    .hours-table tr td {
-      padding: 0.4rem 0;
-      font-size: 0.95rem;
-      border-bottom: 1px solid var(--sand);
-    }
-    .hours-table tr td:last-child { text-align: right; font-weight: 600; }
-    .hours-table tr.fermé td { color: #aaa; }
-    .hours-table tr.ouvert td:last-child { color: var(--coral); }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            padding: 0.9rem 2.2rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s;
+        }
 
-    .directions-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: var(--dark);
-      color: var(--white);
-      padding: 0.75rem 1.5rem;
-      border-radius: 100px;
-      font-weight: 600;
-      font-size: 0.9rem;
-      text-decoration: none;
-      margin-top: 1.5rem;
-      transition: all 0.2s;
-    }
-    .directions-btn:hover { background: var(--coral); transform: translateY(-2px); }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
 
-    .map-frame {
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.12);
-      border: 3px solid var(--sand);
-      height: 420px;
-    }
-    .map-frame iframe { width: 100%; height: 100%; border: none; display: block; }
+        /* Hours strip floating at bottom of hero */
+        .hero-hours {
+            margin-top: 3rem;
+            padding: 1.2rem 1.8rem;
+            background: rgba(14, 76, 122, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            color: var(--white);
+            animation: fadeUp 0.6s 0.4s ease both;
+            display: inline-block;
+        }
 
-    /* ── FOOTER ── */
-    footer {
-      background: var(--dark);
-      color: rgba(255,255,255,0.7);
-      padding: 2.5rem;
-      text-align: center;
-    }
-    footer a { color: var(--sun); text-decoration: none; }
-    footer a:hover { text-decoration: underline; }
-    .footer-logo {
-      font-family: var(--r);
-      font-size: 1.6rem;
-      font-weight: 900;
-      color: var(--white);
-      margin-bottom: 0.5rem;
-    }
-    .footer-logo span { color: var(--coral); }
-    footer p { font-size: 0.85rem; margin-top: 0.4rem; }
+        .hours-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            opacity: 0.7;
+            margin-bottom: 0.8rem;
+        }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .hero-content { padding: 7rem 1.5rem 4rem; }
-      .hours-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 0.5rem; }
-      .hour-col.closed { display: none; }
-      .cards { grid-template-columns: 1fr; }
-      .menu-cta-box { flex-direction: column; text-align: center; }
-      .contact-grid { grid-template-columns: 1fr; }
-      nav ul { display: none; }
-    }
-  </style>
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            text-align: center;
+        }
+
+        .hour-col .day {
+            font-size: 0.65rem;
+            opacity: 0.65;
+            margin-bottom: 0.2rem;
+            text-transform: uppercase;
+        }
+
+        .hour-col .time {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .hour-col.closed .time {
+            opacity: 0.3;
+            font-weight: 400;
+        }
+
+        .hour-col.open .day {
+            color: var(--sun);
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── WAVE DIVIDER ── */
+        .wave-divider {
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            margin-top: -2px;
+        }
+
+        .wave-divider svg {
+            display: block;
+            width: 100%;
+        }
+
+        /* ── SECTION: Du grill à la crèmerie ── */
+        .section {
+            padding: 6rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--coral);
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-family: var(--r);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-desc {
+            font-size: 1.05rem;
+            line-height: 1.75;
+            color: #5a4a2a;
+            max-width: 540px;
+            margin-bottom: 3.5rem;
+        }
+
+        /* Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            padding: 2.5rem;
+            border-radius: 24px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-cantine {
+            background: var(--coral);
+            color: var(--white);
+        }
+
+        .card-cremerie {
+            background: var(--sky);
+            color: var(--white);
+        }
+
+        .card-emoji {
+            font-size: 4rem;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .card h3 {
+            font-family: var(--r);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.02em;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            opacity: 0.9;
+        }
+
+        .card-corner {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            font-size: 8rem;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+
+        /* ── SECTION: Menu Preview ── */
+        .menu-section {
+            background: var(--water);
+            color: var(--white);
+            padding: 6rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 80% 50%, rgba(244, 163, 26, 0.15) 0%, transparent 60%);
+        }
+
+        .menu-section .section-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .menu-section .section-label {
+            color: var(--sun);
+        }
+
+        .menu-section .section-title {
+            color: var(--white);
+        }
+
+        .menu-section .section-desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+
+        .menu-cta-box {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1.5px solid rgba(255, 255, 255, 0.2);
+            border-radius: 24px;
+            padding: 2.5rem 3rem;
+            max-width: 600px;
+            backdrop-filter: blur(10px);
+        }
+
+        .menu-cta-icon {
+            font-size: 4rem;
+        }
+
+        .menu-cta-box h3 {
+            font-family: var(--r);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-cta-box p {
+            opacity: 0.75;
+            font-size: 0.95rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .btn-gold {
+            background: var(--sun);
+            color: var(--dark);
+            padding: 0.75rem 1.8rem;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+            box-shadow: 0 4px 20px rgba(244, 163, 26, 0.4);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(244, 163, 26, 0.5);
+        }
+
+        /* ── SECTION: Contact / Map ── */
+        .contact-section {
+            padding: 6rem 2rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info h2 {
+            font-family: var(--r);
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            margin-bottom: 2rem;
+        }
+
+        .info-block {
+            margin-bottom: 2rem;
+        }
+
+        .info-block h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--coral);
+            font-weight: 700;
+            margin-bottom: 0.7rem;
+        }
+
+        .info-block p,
+        .info-block a {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dark);
+            text-decoration: none;
+        }
+
+        .info-block a:hover {
+            color: var(--coral);
+        }
+
+        .hours-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .hours-table tr td {
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .hours-table tr td:last-child {
+            text-align: right;
+            font-weight: 600;
+        }
+
+        .hours-table tr.fermé td {
+            color: #aaa;
+        }
+
+        .hours-table tr.ouvert td:last-child {
+            color: var(--coral);
+        }
+
+        .directions-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--dark);
+            color: var(--white);
+            padding: 0.75rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            margin-top: 1.5rem;
+            transition: all 0.2s;
+        }
+
+        .directions-btn:hover {
+            background: var(--coral);
+            transform: translateY(-2px);
+        }
+
+        .map-frame {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            border: 3px solid var(--sand);
+            height: 420px;
+        }
+
+        .map-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.7);
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        footer a {
+            color: var(--sun);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-logo {
+            font-family: var(--r);
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-logo span {
+            color: var(--coral);
+        }
+
+        footer p {
+            font-size: 0.85rem;
+            margin-top: 0.4rem;
+        }
+
+        /* Style du bouton burger, invisible sur ordinateur */
+        .burger-label {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-content {
+                padding: 7rem 1.5rem 4rem;
+            }
+
+            .hours-grid {
+                grid-template-columns: repeat(4, 1fr) !important;
+                gap: 0.5rem;
+            }
+
+            .hour-col.closed {
+                display: none;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-cta-box {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .burger-label {
+                display: block;
+                /* Affiche le bouton burger sur mobile */
+            }
+
+            nav ul {
+                display: none;
+                /* Cache le menu par défaut sur mobile */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: #F0E2C8;
+                padding: 1.5rem;
+                gap: 1.5rem;
+                border-bottom: 2px solid #D9C9A8;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Quand la case invisible est cochée, on affiche le menu ul */
+            #menu-toggle:checked~ul {
+                display: flex;
+            }
+        }
+    </style>
+
+    <link rel="icon" type="image/png" href="/my-favicon/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
+<link rel="shortcut icon" href="/my-favicon/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
+<link rel="manifest" href="/my-favicon/site.webmanifest" />
+
 </head>
+
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="logo" href="#top">
-      <img src="assets/Logo1.6AvecFond.svg" alt="Resto-Cantine OK" style="height:48px;width:auto;display:block;" />
-    </a>
-    <ul>
-      <li><a href="#grill">Menu</a></li>
-      <li><a href="#contact">Nous trouver</a></li>
-      <li><a class="nav-cta" href="https://resto-cantine-ok.ca/menu" target="_blank">Voir le Menu ↗</a></li>
-    </ul>
-  </nav>
+    <!-- NAV -->
+    <nav>
+        <a class="logo" href="#top">
+            <img src="assets/Logo1.6AvecFond.svg" alt="Resto-Cantine OK"
+                style="height:48px;width:auto;display:block;" />
+        </a>
 
-  <!-- HERO -->
-  <section class="hero" id="top">
-    <!-- Vidéo d'arrière-plan -->
-    <video class="hero-video" autoplay muted loop playsinline poster="">
-      <source src="assets/videoWelcome.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay"></div>
+        <input type="checkbox" id="menu-toggle" style="display: none;">
+        <label for="menu-toggle" class="burger-label">☰</label>
 
-    <!-- Contenu centré -->
-    <div class="hero-content">
-      <div class="hero-badge">
-        🌊 Au bord du Richelieu · Sabrevois
-      </div>
-      <h1>La <em>cantine</em><br/>du bord de l'eau.</h1>
-      <p class="hero-sub">
-        Frites croustillantes, burgers généreux et crèmes glacées — le spot parfait après une sortie en bateau sur le Richelieu.
-      </p>
-      <div class="hero-btns">
-        <a class="btn-primary" href="https://resto-cantine-ok.ca/menu" target="_blank">🍽️ Voir le Menu</a>
-        <a class="btn-secondary" href="#contact">📍 Nous trouver</a>
-      </div>
+        <ul>
+            
+            <li><a href="#contact" class="nav-link">Nous trouver</a></li>
+            <li><a class="nav-cta nav-link" href="https://resto-cantine-ok.ca/menu">Voir le Menu ↗</a>
+            </li>
+        </ul>
+    </nav>
 
-      <div class="hero-hours">
-        <p class="hours-label">⏰ Heures d'ouverture</p>
-        <div class="hours-grid">
-          <div class="hour-col closed"><p class="day">Lun</p><p class="time">Fermé</p></div>
-          <div class="hour-col closed"><p class="day">Mar</p><p class="time">Fermé</p></div>
-          <div class="hour-col closed"><p class="day">Mer</p><p class="time">Fermé</p></div>
-          <div class="hour-col open"><p class="day">Jeu</p><p class="time">11h–19h</p></div>
-          <div class="hour-col open"><p class="day">Ven</p><p class="time">11h–21h</p></div>
-          <div class="hour-col open"><p class="day">Sam</p><p class="time">11h–21h</p></div>
-          <div class="hour-col open"><p class="day">Dim</p><p class="time">11h–19h</p></div>
+    <!-- HERO -->
+    <section class="hero" id="top">
+        <!-- Vidéo d'arrière-plan -->
+        <video class="hero-video" autoplay muted loop playsinline poster="">
+            <source src="assets/videoWelcome.mp4" type="video/mp4" />
+        </video>
+        <div class="hero-overlay"></div>
+
+        <!-- Contenu centré -->
+        <div class="hero-content">
+            <div class="hero-badge">
+                🌊 Au bord du Richelieu · Sabrevois
+            </div>
+            <h1>La <em>cantine</em><br />du bord de l'eau.</h1>
+            <p class="hero-sub">
+                Poutines uniques, burgers généreux et crèmes glacées — le spot parfait après une sortie en bateau
+                sur le Richelieu, ou pour profiter du bord de l'eau en famille.
+            </p>
+            <div class="hero-btns">
+                <a class="btn-primary" href="https://resto-cantine-ok.ca/menu">🍽️ Voir le Menu</a>
+                <a class="btn-secondary" href="#contact">📍 Nous trouver</a>
+            </div>
+
+            <div class="hero-hours">
+                <p class="hours-label">⏰ Heures d'ouverture</p>
+                <div class="hours-grid">
+                    <div class="hour-col closed">
+                        <p class="day">Lun</p>
+                        <p class="time">Fermé</p>
+                    </div>
+                    <div class="hour-col closed">
+                        <p class="day">Mar</p>
+                        <p class="time">Fermé</p>
+                    </div>
+                    <div class="hour-col closed">
+                        <p class="day">Mer</p>
+                        <p class="time">Fermé</p>
+                    </div>
+                    <div class="hour-col open">
+                        <p class="day">Jeu</p>
+                        <p class="time">11h–19h</p>
+                    </div>
+                    <div class="hour-col open">
+                        <p class="day">Ven</p>
+                        <p class="time">11h–21h</p>
+                    </div>
+                    <div class="hour-col open">
+                        <p class="day">Sam</p>
+                        <p class="time">11h–21h</p>
+                    </div>
+                    <div class="hour-col open">
+                        <p class="day">Dim</p>
+                        <p class="time">11h–19h</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- WAVE -->
+    <div class="wave-divider" style="background:var(--water)">
+        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,60 C360,0 1080,120 1440,60 L1440,0 L0,0 Z" fill="#FDF6E8" />
+        </svg>
     </div>
-  </section>
 
-  <!-- WAVE -->
-  <div class="wave-divider" style="background:var(--water)">
-    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,60 C360,0 1080,120 1440,60 L1440,0 L0,0 Z" fill="#FDF6E8"/>
-    </svg>
-  </div>
+    <!-- DU GRILL -->
+    <section class="section" id="grill">
+        <div class="section-inner">
+            <p class="section-label">🔥 Nos spécialités</p>
+            <h2 class="section-title">Du grill à<br />la crèmerie</h2>
+            <p class="section-desc">
+                Que vous arriviez en bateau, en voiture ou en moto, il y en a pour tous les goûts — de la cantine classique aux
+                délices glacés ! Notre concept unique de cantine deluxe est un incontournable à découvrir. Il est même possible de venir déguster une de nos bières de microbasseries ou un cockatils rafrachissant en admirant le bord de l'eau. Fans de couchés de soleil? Notre emplacement offre une vue incroyable en fin de journée!
+            </p>
 
-  <!-- DU GRILL -->
-  <section class="section" id="grill">
-    <div class="section-inner">
-      <p class="section-label">🔥 Nos spécialités</p>
-      <h2 class="section-title">Du grill à<br/>la crèmerie</h2>
-      <p class="section-desc">
-        Que vous arriviez en bateau ou en voiture, il y en a pour tous les goûts — de la cantine classique aux délices glacés !
-      </p>
-
-      <div class="cards">
-        <div class="card card-cantine">
-          <span class="card-emoji">🍔</span>
-          <h3>Côté Cantine</h3>
-          <p>Burgers généreux, poutines réconfortantes, hot-dogs savoureux et tous les classiques de marina qu'on adore — cuits avec amour.</p>
-          <span class="card-corner">🍟</span>
+            <div class="cards">
+                <div class="card card-cantine">
+                    <span class="card-emoji">🍔</span>
+                    <h3>Côté Cantine</h3>
+                    <p>Burgers généreux, poutines réconfortantes, hot-dogs savoureux et tous les classiques de marina
+                        qu'on adore — cuits avec amour.</p>
+                    <span class="card-corner">🍟</span>
+                </div>
+                <div class="card card-cremerie">
+                    <span class="card-emoji">🍦</span>
+                    <h3>Côté Crèmerie</h3>
+                    <p>Sundaes, cornets sans lactose, trempages colorés et rafraîchissements — la touche sucrée parfaite
+                        pour terminer votre visite.</p>
+                    <span class="card-corner">🍧</span>
+                </div>
+            </div>
         </div>
-        <div class="card card-cremerie">
-          <span class="card-emoji">🍦</span>
-          <h3>Côté Crèmerie</h3>
-          <p>Sundaes, cornets sans lactose, trempages colorés et rafraîchissements — la touche sucrée parfaite pour terminer votre visite.</p>
-          <span class="card-corner">🍧</span>
+    </section>
+
+    <!-- MENU CTA -->
+    <section class="menu-section">
+        <div class="section-inner">
+            <p class="section-label">📋 Notre menu</p>
+            <h2 class="section-title">Tout ce qu'on<br />a à offrir</h2>
+            <p class="section-desc">
+                Consultez le menu complet avant de passer — et venez l'estomac prêt !
+            </p>
+            <div class="menu-cta-box">
+                <div class="menu-cta-icon">🗒️</div>
+                <div>
+                    <h3>Menu complet</h3>
+                    <p>Cantine · Crèmerie · Boissons · Extras</p>
+                    <a class="btn-gold" href="https://resto-cantine-ok.ca/menu" target="_blank">Voir le menu ↗</a>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- WAVE 2 -->
+    <div class="wave-divider" style="background:var(--cream)">
+        <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 C360,60 1080,-60 1440,0 L1440,60 L0,60 Z" fill="#0E4C7A" />
+        </svg>
     </div>
-  </section>
 
-  <!-- MENU CTA -->
-  <section class="menu-section">
-    <div class="section-inner">
-      <p class="section-label">📋 Notre menu</p>
-      <h2 class="section-title">Tout ce qu'on<br/>a à offrir</h2>
-      <p class="section-desc">
-        Consultez le menu complet avant de passer — et venez l'estomac prêt !
-      </p>
-      <div class="menu-cta-box">
-        <div class="menu-cta-icon">🗒️</div>
-        <div>
-          <h3>Menu complet</h3>
-          <p>Cantine · Crèmerie · Boissons · Extras</p>
-          <a class="btn-gold" href="https://resto-cantine-ok.ca/menu" target="_blank">Voir le menu ↗</a>
+    <!-- CONTACT / MAP -->
+    <section class="contact-section" id="contact">
+        <div class="section-inner">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h2>Où nous<br />trouver 📍</h2>
+
+                    <div class="info-block">
+                        <h4>Adresse</h4>
+                        <p>4B, 36e Avenue<br />Sabrevois (QC) J0J 2G0<br /><em style="color:#888;font-size:0.9rem">À la
+                                Marina Sabrevois</em></p>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>Heures d'ouverture</h4>
+                        <table class="hours-table">
+                            <tr class="fermé">
+                                <td>Lundi</td>
+                                <td>Fermé</td>
+                            </tr>
+                            <tr class="fermé">
+                                <td>Mardi</td>
+                                <td>Fermé</td>
+                            </tr>
+                            <tr class="fermé">
+                                <td>Mercredi</td>
+                                <td>Fermé</td>
+                            </tr>
+                            <tr class="ouvert">
+                                <td>Jeudi</td>
+                                <td>11h à 19h</td>
+                            </tr>
+                            <tr class="ouvert">
+                                <td>Vendredi</td>
+                                <td>11h à 21h</td>
+                            </tr>
+                            <tr class="ouvert">
+                                <td>Samedi</td>
+                                <td>11h à 21h</td>
+                            </tr>
+                            <tr class="ouvert">
+                                <td>Dimanche</td>
+                                <td>11h à 19h</td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="info-block">
+                        <h4>Réseaux sociaux</h4>
+                        <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">👍
+                            Suivez-nous sur Facebook</a>
+                    </div>
+
+                    <a class="directions-btn"
+                        href="https://www.google.com/maps/dir/?api=1&destination=Resto-Cantine+OK+4+36e+Avenue+Sabrevois+QC+J0J+2G0"
+                        target="_blank">
+                        🚗 Obtenir l'itinéraire
+                    </a>
+                </div>
+
+                <div class="map-frame">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.440263695287!2d-73.23847952372863!3d45.4004380710731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc99733aeae8f75%3A0x5aa70a63d3e23160!2sResto-Cantine%20OK!5e0!3m2!1sfr!2sca!4v1717110000000!5m2!1sfr!2sca"
+                        allowfullscreen="" loading="lazy">
+                    </iframe>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- WAVE 2 -->
-  <div class="wave-divider" style="background:var(--cream)">
-    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C360,60 1080,-60 1440,0 L1440,60 L0,60 Z" fill="#0E4C7A"/>
-    </svg>
-  </div>
+    <!-- FOOTER -->
+    <footer>
+        <p class="footer-logo">Resto-Cantine <span>OK</span></p>
+        <p>4B, 36e Avenue · Sabrevois, QC · À la Marina</p>
+        <p style="margin-top:1rem">
+            <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">Facebook</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.instagram.com/restocantineok" target="_blank">Instagram</a>
+            &nbsp;·&nbsp;
+            <a href="https://resto-cantine-ok.ca/menu">Menu</a>
+            &nbsp;·&nbsp;
+            <a href="https://www.google.com/maps/dir/?api=1&destination=Resto-Cantine+OK+4+36e+Avenue+Sabrevois+QC+J0J+2G0"
+                target="_blank">Itinéraire</a>
+        </p>
+        <p style="margin-top:1.5rem; opacity:0.45; font-size:0.8rem">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
+        <p>
+            Fait par <a href="fortierwebdesign.ca>"> Fortier Web Design </a>
+        </p>
+    </footer>
 
-  <!-- CONTACT / MAP -->
-  <section class="contact-section" id="contact">
-    <div class="section-inner">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <h2>Où nous<br/>trouver 📍</h2>
+    <script>
+        // On récupère la case à cocher qui contrôle l'affichage du menu
+        const menuToggle = document.getElementById('menu-toggle');
+        // On récupère tous les liens du menu de navigation
+        const navLinks = document.querySelectorAll('.nav-link');
 
-          <div class="info-block">
-            <h4>Adresse</h4>
-            <p>4B, 36e Avenue<br/>Sabrevois (QC)  J0J 2G0<br/><em style="color:#888;font-size:0.9rem">À la Marina Sabrevois</em></p>
-          </div>
-
-          <div class="info-block">
-            <h4>Heures d'ouverture</h4>
-            <table class="hours-table">
-              <tr class="fermé"><td>Lundi</td><td>Fermé</td></tr>
-              <tr class="fermé"><td>Mardi</td><td>Fermé</td></tr>
-              <tr class="fermé"><td>Mercredi</td><td>Fermé</td></tr>
-              <tr class="ouvert"><td>Jeudi</td><td>11h à 19h</td></tr>
-              <tr class="ouvert"><td>Vendredi</td><td>11h à 21h</td></tr>
-              <tr class="ouvert"><td>Samedi</td><td>11h à 21h</td></tr>
-              <tr class="ouvert"><td>Dimanche</td><td>11h à 19h</td></tr>
-            </table>
-          </div>
-
-          <div class="info-block">
-            <h4>Réseaux sociaux</h4>
-            <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">👍 Suivez-nous sur Facebook</a>
-          </div>
-
-          <a class="directions-btn" href="https://www.google.com/maps/dir/?api=1&destination=Resto-Cantine+OK+4+36e+Avenue+Sabrevois+QC+J0J+2G0" target="_blank">
-            🚗 Obtenir l'itinéraire
-          </a>
-        </div>
-
-        <div class="map-frame">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2801.440263695287!2d-73.23847952372863!3d45.4004380710731!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4cc99733aeae8f75%3A0x5aa70a63d3e23160!2sResto-Cantine%20OK!5e0!3m2!1sfr!2sca!4v1717110000000!5m2!1sfr!2sca"
-            allowfullscreen="" loading="lazy">
-          </iframe>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p class="footer-logo">Resto-Cantine <span>OK</span></p>
-    <p>4B, 36e Avenue · Sabrevois, QC · À la Marina</p>
-    <p style="margin-top:1rem">
-      <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">Facebook</a>
-      &nbsp;·&nbsp;
-      <a href="https://resto-cantine-ok.ca/menu" target="_blank">Menu</a>
-      &nbsp;·&nbsp;
-      <a href="https://www.google.com/maps/dir/?api=1&destination=Resto-Cantine+OK+4+36e+Avenue+Sabrevois+QC+J0J+2G0" target="_blank">Itinéraire</a>
-    </p>
-    <p style="margin-top:1.5rem; opacity:0.45; font-size:0.8rem">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
-  </footer>
-
+        // Pour chaque lien, on écoute le clic
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Dès qu'on clique, on décoche la case pour fermer le menu sur mobile
+                if (menuToggle) {
+                    menuToggle.checked = false;
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>

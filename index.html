@@ -22,11 +22,11 @@
 
         :root {
             --sun: #F4A31A;
-            --coral: #E85D3A;
-            --sky: #2D7BBF;
-            --water: #0E4C7A;
-            --cream: #FDF6E8;
-            --sand: #EDE0C4;
+            --coral: #D4600A;  /* était #E85D3A */
+  --sky:   #04bae6;  /* était #2D7BBF */
+  --water: #263e51;  /* était #0E4C7A */
+  --cream: #F5F0E4;  /* était #FDF6E8 */
+  --sand:  #e6dcbb;  /* était #EDE0C4 */
             --dark: #1A1208;
             --white: #FFFFFF;
             --r: Fraunces, Georgia, serif;
@@ -683,10 +683,10 @@
     </style>
 
     <link rel="icon" type="image/png" href="/my-favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
-<link rel="shortcut icon" href="/my-favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
-<link rel="manifest" href="/my-favicon/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/my-favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/my-favicon/site.webmanifest" />
 
 </head>
 
@@ -703,7 +703,7 @@
         <label for="menu-toggle" class="burger-label">☰</label>
 
         <ul>
-            
+
             <li><a href="#contact" class="nav-link">Nous trouver</a></li>
             <li><a class="nav-cta nav-link" href="https://resto-cantine-ok.ca/menu">Voir le Menu ↗</a>
             </li>
@@ -735,37 +735,91 @@
 
             <div class="hero-hours">
                 <p class="hours-label">⏰ Heures d'ouverture</p>
+
+                <div id="ok-status" style="display:flex; align-items:center; gap:8px; margin-bottom:10px;">
+                    <div id="ok-dot" style="width:8px; height:8px; border-radius:50%; flex-shrink:0;"></div>
+                    <span id="ok-label" style="font-size:13px; font-weight:600;"></span>
+                </div>
+                <p id="ok-next" style="font-size:12px; opacity:0.75; margin:-6px 0 10px 16px;"></p>
+
                 <div class="hours-grid">
-                    <div class="hour-col closed">
+                    <div class="hour-col closed" data-day="1">
                         <p class="day">Lun</p>
                         <p class="time">Fermé</p>
                     </div>
-                    <div class="hour-col closed">
+                    <div class="hour-col closed" data-day="2">
                         <p class="day">Mar</p>
                         <p class="time">Fermé</p>
                     </div>
-                    <div class="hour-col closed">
+                    <div class="hour-col closed" data-day="3">
                         <p class="day">Mer</p>
                         <p class="time">Fermé</p>
                     </div>
-                    <div class="hour-col open">
+                    <div class="hour-col open" data-day="4">
                         <p class="day">Jeu</p>
                         <p class="time">11h–19h</p>
                     </div>
-                    <div class="hour-col open">
+                    <div class="hour-col open" data-day="5">
                         <p class="day">Ven</p>
                         <p class="time">11h–21h</p>
                     </div>
-                    <div class="hour-col open">
+                    <div class="hour-col open" data-day="6">
                         <p class="day">Sam</p>
                         <p class="time">11h–21h</p>
                     </div>
-                    <div class="hour-col open">
+                    <div class="hour-col open" data-day="0">
                         <p class="day">Dim</p>
                         <p class="time">11h–19h</p>
                     </div>
                 </div>
             </div>
+
+            <script>
+                (function () {
+                    const HOURS = {
+                        0: { open: 11, close: 19 },
+                        4: { open: 11, close: 19 },
+                        5: { open: 11, close: 21 },
+                        6: { open: 11, close: 21 }
+                    };
+                    const JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
+
+                    const now = new Date();
+                    const day = now.getDay();
+                    const hour = now.getHours() + now.getMinutes() / 60;
+                    const today = HOURS[day];
+
+                    // Surligner le jour actuel
+                    document.querySelectorAll('.hour-col[data-day]').forEach(el => {
+                        if (parseInt(el.dataset.day) === day) {
+                            el.style.outline = '2px solid rgba(255,255,255,0.6)';
+                            el.style.borderRadius = '6px';
+                        }
+                    });
+
+                    // Statut ouvert / fermé
+                    const dot = document.getElementById('ok-dot');
+                    const label = document.getElementById('ok-label');
+                    const next = document.getElementById('ok-next');
+
+                    if (today && hour >= today.open && hour < today.close) {
+                        dot.style.background = '#4ade80';
+                        label.textContent = 'Ouvert maintenant';
+                        next.textContent = 'Ferme à ' + today.close + 'h';
+                    } else {
+                        dot.style.background = '#f87171';
+                        label.textContent = 'Fermé actuellement';
+                        for (let i = 1; i <= 7; i++) {
+                            const nd = HOURS[(day + i) % 7];
+                            if (nd) {
+                                const nl = i === 1 ? 'demain' : JOURS[(day + i) % 7].toLowerCase();
+                                next.textContent = 'Prochaine ouverture : ' + nl + ' à ' + nd.open + 'h';
+                                break;
+                            }
+                        }
+                    }
+                })();
+            </script>
         </div>
     </section>
 
@@ -782,8 +836,12 @@
             <p class="section-label">🔥 Nos spécialités</p>
             <h2 class="section-title">Du grill à<br />la crèmerie</h2>
             <p class="section-desc">
-                Que vous arriviez en bateau, en voiture ou en moto, il y en a pour tous les goûts — de la cantine classique aux
-                délices glacés ! Notre concept unique de cantine deluxe est un incontournable à découvrir. Il est même possible de venir déguster une de nos bières de microbasseries ou un cockatils rafrachissant en admirant le bord de l'eau. Fans de couchés de soleil? Notre emplacement offre une vue incroyable en fin de journée!
+                Que vous arriviez en bateau, en voiture ou en moto, il y en a pour tous les goûts — de la cantine
+                classique aux
+                délices glacés ! Notre concept unique de cantine deluxe est un incontournable à découvrir. Il est même
+                possible de venir déguster une de nos bières de microbasseries ou un cockatils rafrachissant en admirant
+                le bord de l'eau. Fans de couchés de soleil? Notre emplacement offre une vue incroyable en fin de
+                journée!
             </p>
 
             <div class="cards">
@@ -904,7 +962,7 @@
     <!-- FOOTER -->
     <footer>
         <p class="footer-logo">Resto-Cantine <span>OK</span></p>
-        <p>4B, 36e Avenue · Sabrevois, QC · À la Marina</p>
+        <p>4, 36e Avenue · Sabrevois, QC · À la Marina</p>
         <p style="margin-top:1rem">
             <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">Facebook</a>
             &nbsp;·&nbsp;
@@ -917,7 +975,7 @@
         </p>
         <p style="margin-top:1.5rem; opacity:0.45; font-size:0.8rem">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
         <p>
-            Fait par <a href="fortierwebdesign.ca>"> Fortier Web Design </a>
+            Fait par <a href="https://fortierwebdesign.ca"> Fortier Web Design </a>
         </p>
     </footer>
 

@@ -554,10 +554,10 @@
     </style>
 
     <link rel="icon" type="image/png" href="/my-favicon/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
-<link rel="shortcut icon" href="/my-favicon/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
-<link rel="manifest" href="/my-favicon/site.webmanifest" />
+    <link rel="icon" type="image/svg+xml" href="/my-favicon/favicon.svg" />
+    <link rel="shortcut icon" href="/my-favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/my-favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="/my-favicon/site.webmanifest" />
 
 </head>
 
@@ -565,7 +565,7 @@
 
     <!-- NAV -->
     <nav>
-        <a class="logo" href="#top">
+        <a class="logo" href="https://resto-cantine-ok.ca">
             <img src="assets/Logo1.6AvecFond.svg" alt="Resto-Cantine OK"
                 style="height:48px;width:auto;display:block;" />
         </a>
@@ -574,7 +574,7 @@
         <label for="menu-toggle" class="burger-label">☰</label>
 
         <ul>
-            <li><a href="#grill" class="nav-link">Menu</a></li>
+
             <li><a href="#contact" class="nav-link">Nous trouver</a></li>
             <li><a class="nav-cta nav-link" href="https://resto-cantine-ok.ca/menu">Voir le Menu ↗</a></li>
         </ul>
@@ -584,7 +584,14 @@
     <div class="menu-hero">
         <div class="menu-hero-inner">
             <h1>Notre <em>Menu</em></h1>
-            <p>Cantine · Crèmerie · Goûts de la mer · Et plus encore !</p>
+            <p>Cantine · Crèmerie · Goûts de la mer · Bières · Et plus encore !</p>
+
+            <div id="ok-status-bar"
+                style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,0.12); border:1.5px solid rgba(255,255,255,0.25); border-radius:100px; padding:0.45rem 1.2rem; margin-bottom:1.5rem;">
+                <div id="ok-dot" style="width:9px; height:9px; border-radius:50%; flex-shrink:0;"></div>
+                <span id="ok-label" style="font-size:0.88rem; font-weight:600; color:#fff;"></span>
+                <span id="ok-next" style="font-size:0.82rem; color:rgba(255,255,255,0.65);"></span>
+            </div>
 
             <div class="filter-tabs">
                 <a class="tab-btn active" href="#smash">🍔 Smash Burger</a>
@@ -1045,7 +1052,7 @@
     <!-- FOOTER -->
     <footer>
         <p class="footer-logo">Resto-Cantine <span>OK</span></p>
-        <p>4B, 36e Avenue · Sabrevois, QC · À la Marina</p>
+        <p>4, 36e Avenue · Sabrevois, QC · À la Marina</p>
         <p style="margin-top:1rem">
             <a href="https://www.facebook.com/share/1KRWphJnM5/?mibextid=wwXIfr" target="_blank">Facebook</a>
             &nbsp;·&nbsp;
@@ -1058,27 +1065,65 @@
         </p>
         <p style="margin-top:1.5rem; opacity:0.45; font-size:0.8rem">© 2026 Resto-Cantine OK. Tous droits réservés.</p>
         <p>
-            Fait par <a href="fortierwebdesign.ca>"> Fortier Web Design </a>
+            Fait par <a href="https://fortierwebdesign.ca"> Fortier Web Design </a>
         </p>
     </footer>
 
 
 
     <script>
-  // On récupère la case à cocher qui contrôle l'affichage du menu
-  const menuToggle = document.getElementById('menu-toggle');
-  // On récupère tous les liens du menu de navigation
-  const navLinks = document.querySelectorAll('.nav-link');
+        // On récupère la case à cocher qui contrôle l'affichage du menu
+        const menuToggle = document.getElementById('menu-toggle');
+        // On récupère tous les liens du menu de navigation
+        const navLinks = document.querySelectorAll('.nav-link');
 
-  // Pour chaque lien, on écoute le clic
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      // Dès qu'on clique, on décoche la case pour fermer le menu sur mobile
-      if (menuToggle) {
-        menuToggle.checked = false;
-      }
-    });
-  });
+        // Pour chaque lien, on écoute le clic
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                // Dès qu'on clique, on décoche la case pour fermer le menu sur mobile
+                if (menuToggle) {
+                    menuToggle.checked = false;
+                }
+            });
+        });
+    </script>
+
+    <script>
+(function() {
+    const HOURS = {
+        0: { label: 'Dimanche', open: 11, close: 19 },
+        4: { label: 'Jeudi',    open: 11, close: 19 },
+        5: { label: 'Vendredi', open: 11, close: 21 },
+        6: { label: 'Samedi',   open: 11, close: 21 }
+    };
+    const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+
+    const now   = new Date();
+    const day   = now.getDay();
+    const hour  = now.getHours() + now.getMinutes() / 60;
+    const today = HOURS[day];
+
+    const dot   = document.getElementById('ok-dot');
+    const label = document.getElementById('ok-label');
+    const next  = document.getElementById('ok-next');
+
+    if (today && hour >= today.open && hour < today.close) {
+        dot.style.background = '#4ade80';
+        label.textContent = 'Ouvert maintenant';
+        next.textContent  = '· Ferme à ' + today.close + 'h';
+    } else {
+        dot.style.background = '#f87171';
+        label.textContent = 'Fermé pour actuellement';
+        for (let i = 1; i <= 7; i++) {
+            const nd = HOURS[(day + i) % 7];
+            if (nd) {
+                const nl = i === 1 ? 'demain' : JOURS[(day + i) % 7].toLowerCase();
+                next.textContent = '· Prochaine ouverture : ' + nl + ' à ' + nd.open + 'h';
+                break;
+            }
+        }
+    }
+})();
 </script>
 </body>
 

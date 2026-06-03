@@ -22,11 +22,16 @@
 
         :root {
             --sun: #F4A31A;
-            --coral: #E85D3A;
-            --sky: #2D7BBF;
-            --water: #0E4C7A;
-            --cream: #FDF6E8;
-            --sand: #EDE0C4;
+            --coral: #D4600A;
+            /* était #E85D3A */
+            --sky: #04bae6;
+            /* était #2D7BBF */
+            --water: #263e51;
+            /* était #0E4C7A */
+            --cream: #F5F0E4;
+            /* était #FDF6E8 */
+            --sand: #e6dcbb;
+            /* était #EDE0C4 */
             --dark: #1A1208;
             --white: #FFFFFF;
             --r: Fraunces, Georgia, serif;
@@ -1089,42 +1094,42 @@
     </script>
 
     <script>
-(function() {
-    const HOURS = {
-        0: { label: 'Dimanche', open: 11, close: 19 },
-        4: { label: 'Jeudi',    open: 11, close: 19 },
-        5: { label: 'Vendredi', open: 11, close: 21 },
-        6: { label: 'Samedi',   open: 11, close: 21 }
-    };
-    const JOURS = ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'];
+        (function () {
+            const HOURS = {
+                0: { label: 'Dimanche', open: 11, close: 19 },
+                4: { label: 'Jeudi', open: 11, close: 19 },
+                5: { label: 'Vendredi', open: 11, close: 21 },
+                6: { label: 'Samedi', open: 11, close: 21 }
+            };
+            const JOURS = ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'];
 
-    const now   = new Date();
-    const day   = now.getDay();
-    const hour  = now.getHours() + now.getMinutes() / 60;
-    const today = HOURS[day];
+            const now = new Date();
+            const day = now.getDay();
+            const hour = now.getHours() + now.getMinutes() / 60;
+            const today = HOURS[day];
 
-    const dot   = document.getElementById('ok-dot');
-    const label = document.getElementById('ok-label');
-    const next  = document.getElementById('ok-next');
+            const dot = document.getElementById('ok-dot');
+            const label = document.getElementById('ok-label');
+            const next = document.getElementById('ok-next');
 
-    if (today && hour >= today.open && hour < today.close) {
-        dot.style.background = '#4ade80';
-        label.textContent = 'Ouvert maintenant';
-        next.textContent  = '· Ferme à ' + today.close + 'h';
-    } else {
-        dot.style.background = '#f87171';
-        label.textContent = 'Fermé pour actuellement';
-        for (let i = 1; i <= 7; i++) {
-            const nd = HOURS[(day + i) % 7];
-            if (nd) {
-                const nl = i === 1 ? 'demain' : JOURS[(day + i) % 7].toLowerCase();
-                next.textContent = '· Prochaine ouverture : ' + nl + ' à ' + nd.open + 'h';
-                break;
+            if (today && hour >= today.open && hour < today.close) {
+                dot.style.background = '#4ade80';
+                label.textContent = 'Ouvert maintenant';
+                next.textContent = '· Ferme à ' + today.close + 'h';
+            } else {
+                dot.style.background = '#f87171';
+                label.textContent = 'Fermé actuellement';
+                for (let i = 1; i <= 7; i++) {
+                    const nd = HOURS[(day + i) % 7];
+                    if (nd) {
+                        const nl = i === 1 ? 'demain' : JOURS[(day + i) % 7].toLowerCase();
+                        next.textContent = '· Prochaine ouverture : ' + nl + ' à ' + nd.open + 'h';
+                        break;
+                    }
+                }
             }
-        }
-    }
-})();
-</script>
+        })();
+    </script>
 </body>
 
 </html>
